@@ -1,12 +1,12 @@
 import './App.css';
-import * as THREE from 'three';
+import {Three} from './three.js';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <p>
-          Hey, it's Flavio.
+      <div className="App-header">
+        <p className='Flav'>
+          hey, it's flavio.
         </p>
         <a
           className="App-link"
@@ -16,7 +16,9 @@ function App() {
         >
          My GitHub
         </a>
-      </header>
+      </div>
+      <Three>
+      </Three>
     </div>
   );
 }
