@@ -12,6 +12,8 @@ const cube = new THREE.Mesh( geometry, material );
 scene.add( cube );
 
 scene.background = new THREE.TextureLoader().load( galaxy );
+const javapokevideo = document.getElementById( 'javapokevid' );
+const javapoketexture = new THREE.VideoTexture( javapokevideo );
 
 camera.position.z = 2;
 
