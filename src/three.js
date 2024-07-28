@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import galaxy from './imgs/agalxy2.jpg';
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
@@ -10,16 +11,30 @@ const material = new THREE.MeshBasicMaterial( { color: 0x500072 } );
 const cube = new THREE.Mesh( geometry, material );
 scene.add( cube );
 
-scene.background = new THREE.Color(0x101421);
+scene.background = new THREE.TextureLoader().load( galaxy );
 
 camera.position.z = 2;
 
+let rotating = false;
+let counter = 0;
+
 function animate() {
-    if (cube.rotation.x < 1.0) {
-        cube.rotation.x += 0.001;
+    //use this premise to jumping to faces
+    if (!rotating) {
+        if (counter <= 100) {
+           cube.rotation.x += 0.0005;
+           cube.rotation.y += 0.0005; 
+           //cube.rotation.z += 0.0005;
+        } else {
+            cube.rotation.x += -0.0005;
+            cube.rotation.y += -0.0005;
+            //cube.rotation.z += -0.0005;
+        }
     }
-    cube.rotation.y += 0.001;
-    cube.rotation.z += 0.001;
+    counter++;
+    if (counter == 201) {
+        counter = 0;
+    }
 	renderer.render( scene, camera );
 }
 
