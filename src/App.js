@@ -1,4 +1,5 @@
 import './App.css';
+import {Buttons} from './buttons.js';
 import {Three} from './three.js';
 
 function App() {
@@ -17,8 +18,8 @@ function App() {
          My GitHub
         </a>
       </div>
-      <Three>
-      </Three>
+      <Three></Three>
+      <Buttons></Buttons>
     </div>
   );
 }
