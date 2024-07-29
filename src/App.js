@@ -19,9 +19,8 @@ function App() {
          My GitHub
         </a>
       </div>
-      <Three></Three>
-      <Stars></Stars>
-      <Buttons></Buttons>
+      <Stars/>
+      <Buttons/>
     </div>
   );
 }

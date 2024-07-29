@@ -14,15 +14,18 @@ var container, aspectRatio,
     windowHalfY, stats, geometry,
     starStuff, materialOptions, stars;
 
-//forgetting about this for now
+//the function ran twice for some reason so i added this so it only runs once lmao
+var ok = 0;
+
 export function Stars () {
     init();
-    animate();
 }
 
 function init() {
-    container = document.createElement('div');
+    if (ok == 0) {
+        container = document.createElement('div');
     document.body.appendChild( container );
+    console.log("bg");
     document.body.style.overflow = 'hidden';
 
     HEIGHT = window.innerHeight;
@@ -36,17 +39,6 @@ function init() {
 
     windowHalfX = WIDTH / 2;
     windowHalfY = HEIGHT / 2;
-
-/* 	fieldOfView — Camera frustum vertical field of view.
-        aspectRatio — Camera frustum aspect ratio.
-        nearPlane — Camera frustum near plane.
-        farPlane — Camera frustum far plane.	
-
-        - https://threejs.org/docs/#Reference/Cameras/PerspectiveCamera
-
-        In geometry, a frustum (plural: frusta or frustums) 
-        is the portion of a solid (normally a cone or pyramid) 
-        that lies between two parallel planes cutting it. - wikipedia.		*/
 
     camera = new THREE.PerspectiveCamera(fieldOfView, aspectRatio, nearPlane, farPlane);
 
@@ -68,38 +60,20 @@ function init() {
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize( WIDTH, HEIGHT);
     container.appendChild(renderer.domElement);
+    renderer.setAnimationLoop( animate );
 
     window.addEventListener( 'resize', onWindowResize, false );
     document.addEventListener( 'mousemove', onMouseMove, false );
+    }
+    ok++;
     
 }
 
 function animate() {
-    requestAnimationFrame(animate);
-    render();
-}
-
-
-function render() {
     camera.position.x += ( mouseX - camera.position.x ) * 0.005;
     camera.position.y += ( - mouseY - camera.position.y ) * 0.005;
     camera.lookAt( scene.position );
     renderer.render(scene, camera);
-}
-
-function webGLSupport() {
-    /* 	The wizard of webGL only bestows his gifts of power
-        to the worthy.  In this case, users with browsers who 'get it'.		*/
-
-    try {
-        var canvas = document.createElement('canvas');
-        return !!(window.WebGLRenderingContext && (
-            canvas.getContext('webgl') || canvas.getContext('experimental-webgl'))
-        );
-    } catch(e) {
-        // console.warn('Hey bro, for some reason we\'re not able to use webGL for this.  No biggie, we\'ll use canvas.');
-        return false;
-    }
 }
 
 function onWindowResize() {
