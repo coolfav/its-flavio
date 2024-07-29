@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import galaxy from './imgs/agalxy2.jpg';
+import { TrackballControls } from 'three/addons/controls/TrackballControls.js';
 /* 	'To actually be able to display anything with Three.js, we need three things:
     A scene, a camera, and a renderer so we can render the scene with the camera.' 
         
@@ -18,6 +19,9 @@ var container, aspectRatio,
 //the function ran twice for some reason so i added this so it only runs once lmao
 var ok = 0;
 
+//used to determine if the camera still follows the cursor or not, if false then yes. once a button is clicked, this should set to true.
+var clicked = false;
+
 const javapokevideo = document.getElementById( 'javapokevid' );
 const javapoketexture = new THREE.VideoTexture( javapokevideo );
 
@@ -34,6 +38,8 @@ const cubegeometry = new THREE.BoxGeometry( 300, 300, 300 );
 const cube = new THREE.Mesh( cubegeometry, movieMaterial );
 cube.position.set(0,0,0);
 
+var controls;
+
 export function Stars () {
     init();
 }
@@ -41,49 +47,54 @@ export function Stars () {
 function init() {
     if (ok == 0) {
         container = document.createElement('div');
-    document.body.appendChild( container );
-    console.log("bg");
-    document.body.style.overflow = 'hidden';
+        document.body.appendChild( container );
+        console.log("bg");
+        document.body.style.overflow = 'hidden';
 
-    HEIGHT = window.innerHeight;
-    WIDTH = window.innerWidth;
-    aspectRatio = WIDTH / HEIGHT;
-    fieldOfView = 75;
-    nearPlane = 1;
-    farPlane = 1000;
-    mouseX = 0;
-    mouseY = 0;
+        HEIGHT = window.innerHeight;
+        WIDTH = window.innerWidth;
+        aspectRatio = WIDTH / HEIGHT;
+        fieldOfView = 75;
+        nearPlane = 1;
+        farPlane = 1000;
+        mouseX = 0;
+        mouseY = 0;
 
-    windowHalfX = WIDTH / 2;
-    windowHalfY = HEIGHT / 2;
+        windowHalfX = WIDTH / 2;
+        windowHalfY = HEIGHT / 2;
 
-    camera = new THREE.PerspectiveCamera(fieldOfView, aspectRatio, nearPlane, farPlane);
+        camera = new THREE.PerspectiveCamera(fieldOfView, aspectRatio, nearPlane, farPlane);
 
-    //Z positioning of camera
+        //Z positioning of camera
 
-    camera.position.z = farPlane / 2;
+        camera.position.z = farPlane / 2;
+        
+        scene = new THREE.Scene({antialias:true});
+        scene.fog = new THREE.FogExp2( 0x000000, 0.0003 );
+
+        scene.background = new THREE.TextureLoader().load( galaxy );
+
+        // The wizard's about to get busy.
+        starForge();
+
+        scene.add(cube);
     
-    scene = new THREE.Scene({antialias:true});
-    scene.fog = new THREE.FogExp2( 0x000000, 0.0003 );
-
-    scene.background = new THREE.TextureLoader().load( galaxy );
-
-    // The wizard's about to get busy.
-    starForge();
-
-    scene.add(cube);
- 
-    renderer = new THREE.WebGLRenderer({alpha: true});
+        renderer = new THREE.WebGLRenderer({alpha: true});
 
 
-    renderer.setClearColor(0x000011, 1);
-    renderer.setPixelRatio(window.devicePixelRatio);
-    renderer.setSize( WIDTH, HEIGHT);
-    container.appendChild(renderer.domElement);
-    renderer.setAnimationLoop( animate );
+        renderer.setClearColor(0x000011, 1);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        renderer.setSize( WIDTH, HEIGHT);
+        container.appendChild(renderer.domElement);
+        renderer.setAnimationLoop( animate );
 
-    window.addEventListener( 'resize', onWindowResize, false );
-    document.addEventListener( 'mousemove', onMouseMove, false );
+        controls = new TrackballControls( camera, renderer.domElement);
+        controls.noPan = true;
+        controls.noZoom = true;
+        controls.target.set( 0, 0, 0 );
+
+        window.addEventListener( 'resize', onWindowResize, false );
+        document.addEventListener( 'mousemove', onMouseMove, false );
     }
     ok++;
     
@@ -91,10 +102,10 @@ function init() {
 
 function animate() {
     javapokevideo.play();
-    camera.position.x += ( mouseX - camera.position.x ) * 0.005;
-    camera.position.y += ( - mouseY - camera.position.y ) * 0.005;
-    camera.lookAt( scene.position );
+    //camera.position.x += ( mouseX - camera.position.x ) * 0.005;
+    //camera.position.y += ( - mouseY - camera.position.y ) * 0.005;
     javapoketexture.needsUpdate = true;
+    controls.update();
     renderer.render(scene, camera);
 }
 
@@ -148,8 +159,9 @@ function starForge() {
 
 
 function onMouseMove(e) {
-    mouseX = e.clientX - windowHalfX;
-    mouseY = e.clientY - windowHalfY;
+    //mouseX = e.clientX - windowHalfX;
+    //mouseY = e.clientY - windowHalfY;
+
 }	
 
 
