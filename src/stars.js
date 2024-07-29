@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import galaxy from './imgs/agalxy2.jpg';
-import { TrackballControls } from 'three/addons/controls/TrackballControls.js';
+import { TBControls } from './TBcontrols.js';
 /* 	'To actually be able to display anything with Three.js, we need three things:
     A scene, a camera, and a renderer so we can render the scene with the camera.' 
         
@@ -31,7 +31,6 @@ javapoketexture.magFilter = THREE.LinearFilter;
 var movieMaterial = new THREE.MeshBasicMaterial({
     map: javapoketexture,
     side: THREE.FrontSide,
-    toneMapped: false
 });
 
 const cubegeometry = new THREE.BoxGeometry( 300, 300, 300 );
@@ -88,7 +87,7 @@ function init() {
         container.appendChild(renderer.domElement);
         renderer.setAnimationLoop( animate );
 
-        controls = new TrackballControls( camera, renderer.domElement);
+        controls = new TBControls( camera, renderer.domElement);
         controls.noPan = true;
         controls.noZoom = true;
         controls.target.set( 0, 0, 0 );
@@ -105,7 +104,9 @@ function animate() {
     //camera.position.x += ( mouseX - camera.position.x ) * 0.005;
     //camera.position.y += ( - mouseY - camera.position.y ) * 0.005;
     javapoketexture.needsUpdate = true;
-    controls.update();
+    if (!clicked) {
+        controls.update();
+    }
     renderer.render(scene, camera);
 }
 
