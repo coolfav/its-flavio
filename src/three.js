@@ -58,5 +58,5 @@ function animate() {
 renderer.setAnimationLoop( animate );
 
 export function Three () {
-    document.body.appendChild( renderer.domElement );
+    //document.body.appendChild( renderer.domElement );
 }
