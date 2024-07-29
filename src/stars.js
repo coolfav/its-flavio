@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import galaxy from './imgs/agalxy2.jpg';
 /* 	'To actually be able to display anything with Three.js, we need three things:
     A scene, a camera, and a renderer so we can render the scene with the camera.' 
         
@@ -16,6 +17,22 @@ var container, aspectRatio,
 
 //the function ran twice for some reason so i added this so it only runs once lmao
 var ok = 0;
+
+const javapokevideo = document.getElementById( 'javapokevid' );
+const javapoketexture = new THREE.VideoTexture( javapokevideo );
+
+javapoketexture.minFilter = THREE.LinearFilter;
+javapoketexture.magFilter = THREE.LinearFilter;
+
+var movieMaterial = new THREE.MeshBasicMaterial({
+    map: javapoketexture,
+    side: THREE.FrontSide,
+    toneMapped: false
+});
+
+const cubegeometry = new THREE.BoxGeometry( 300, 300, 300 );
+const cube = new THREE.Mesh( cubegeometry, movieMaterial );
+cube.position.set(0,0,0);
 
 export function Stars () {
     init();
@@ -49,9 +66,12 @@ function init() {
     scene = new THREE.Scene({antialias:true});
     scene.fog = new THREE.FogExp2( 0x000000, 0.0003 );
 
+    scene.background = new THREE.TextureLoader().load( galaxy );
+
     // The wizard's about to get busy.
     starForge();
-    
+
+    scene.add(cube);
  
     renderer = new THREE.WebGLRenderer({alpha: true});
 
@@ -70,9 +90,11 @@ function init() {
 }
 
 function animate() {
+    javapokevideo.play();
     camera.position.x += ( mouseX - camera.position.x ) * 0.005;
     camera.position.y += ( - mouseY - camera.position.y ) * 0.005;
     camera.lookAt( scene.position );
+    javapoketexture.needsUpdate = true;
     renderer.render(scene, camera);
 }
 
@@ -124,8 +146,8 @@ function starForge() {
     scene.add(stars);
 }
 
-function onMouseMove(e) {
 
+function onMouseMove(e) {
     mouseX = e.clientX - windowHalfX;
     mouseY = e.clientY - windowHalfY;
 }	

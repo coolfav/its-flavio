@@ -7,9 +7,8 @@ import galaxy from './imgs/agalxy2.jpg';
 //renderer.setSize( window.innerWidth, window.innerHeight );
 
 
-//scene.background = new THREE.TextureLoader().load( galaxy );
+// scene.background = new THREE.TextureLoader().load( galaxy );
 // scene.backgroundBlurriness = 0.2;
-//scene.backgroundRotation = (0,0,0);
 const javapokevideo = document.getElementById( 'javapokevid' );
 const javapoketexture = new THREE.VideoTexture( javapokevideo );
 
