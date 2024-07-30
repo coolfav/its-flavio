@@ -20,7 +20,7 @@ var container, aspectRatio,
 var ok = 0;
 
 //used to determine if the camera still follows the cursor or not, if false then yes. once a button is clicked, this should set to true.
-var clicked = false;
+var clicken = '';
 
 const javapokevideo = document.getElementById( 'javapokevid' );
 const javapoketexture = new THREE.VideoTexture( javapokevideo );
@@ -39,7 +39,8 @@ cube.position.set(0,0,0);
 
 var controls;
 
-export function Stars () {
+export function Stars ({clicked}) {
+    clicken = clicked;
     init();
 }
 
@@ -93,7 +94,7 @@ function init() {
         controls.target.set( 0, 0, 0 );
 
         window.addEventListener( 'resize', onWindowResize, false );
-        document.addEventListener( 'mousemove', onMouseMove, false );
+        
     }
     ok++;
     
@@ -101,10 +102,8 @@ function init() {
 
 function animate() {
     javapokevideo.play();
-    //camera.position.x += ( mouseX - camera.position.x ) * 0.005;
-    //camera.position.y += ( - mouseY - camera.position.y ) * 0.005;
     javapoketexture.needsUpdate = true;
-    if (!clicked) {
+    if (clicken == '') {
         controls.update();
     }
     renderer.render(scene, camera);
@@ -157,12 +156,5 @@ function starForge() {
     stars = new THREE.Points(geometry, starStuff);
     scene.add(stars);
 }
-
-
-function onMouseMove(e) {
-    //mouseX = e.clientX - windowHalfX;
-    //mouseY = e.clientY - windowHalfY;
-
-}	
 
 

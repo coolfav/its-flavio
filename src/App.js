@@ -1,7 +1,5 @@
 import './App.css';
 import {Buttons} from './buttons.js';
-import { Stars } from './stars.js';
-import {Three} from './three.js';
 
 function App() {
   return (
@@ -19,7 +17,6 @@ function App() {
          My GitHub
         </a>
       </div>
-      <Stars/>
       <Buttons/>
     </div>
   );
