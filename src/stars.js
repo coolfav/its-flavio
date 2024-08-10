@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import galaxy from './imgs/agalxy2.jpg';
+import galaxy from './imgs/galaxbgS.jpg';
 import { TBControls } from './TBcontrols.js';
 /* 	'To actually be able to display anything with Three.js, we need three things:
     A scene, a camera, and a renderer so we can render the scene with the camera.' 
@@ -11,10 +11,9 @@ var scene, camera, renderer;
 /* We need this stuff too */
 var container, aspectRatio,
     HEIGHT, WIDTH, fieldOfView,
-    nearPlane, farPlane,
-    mouseX, mouseY, windowHalfX,
-    windowHalfY, stats, geometry,
+    nearPlane, farPlane, geometry,
     starStuff, materialOptions, stars;
+    //mouseX, mouseY, windowHalfX, windowHalfY
 
 //the function ran twice for some reason so i added this so it only runs once lmao
 var ok = 0;
@@ -24,17 +23,44 @@ var clicken = '';
 
 const javapokevideo = document.getElementById( 'javapokevid' );
 const javapoketexture = new THREE.VideoTexture( javapokevideo );
-
 javapoketexture.minFilter = THREE.LinearFilter;
 javapoketexture.magFilter = THREE.LinearFilter;
+
+const mariovideo = document.getElementById( 'marioluigi' );
+const mariotext = new THREE.VideoTexture( mariovideo );
+mariotext.minFilter = THREE.LinearFilter;
+mariotext.magFilter = THREE.LinearFilter;
+
+const pokecrossvideo = document.getElementById( 'pokercross' );
+const pokectext = new THREE.VideoTexture( pokecrossvideo );
+pokectext.minFilter = THREE.LinearFilter;
+pokectext.magFilter = THREE.LinearFilter;
 
 var movieMaterial = new THREE.MeshBasicMaterial({
     map: javapoketexture,
     side: THREE.FrontSide,
 });
 
+var movieMaterial2 = [
+    new THREE.MeshBasicMaterial({
+        map: javapoketexture,
+        transparent: true, 
+        side:THREE.DoubleSide 
+    }),
+    new THREE.MeshBasicMaterial({
+        map: mariotext,
+        transparent: true, 
+        side:THREE.DoubleSide 
+    }),
+    new THREE.MeshBasicMaterial({
+        map: pokectext,
+        transparent: true, 
+        side:THREE.DoubleSide 
+    })
+]
+
 const cubegeometry = new THREE.BoxGeometry( 300, 300, 300 );
-const cube = new THREE.Mesh( cubegeometry, movieMaterial );
+const cube = new THREE.Mesh( cubegeometry, movieMaterial2 );
 cube.position.set(0,0,0);
 
 var controls;
@@ -45,7 +71,7 @@ export function Stars ({clicked}) {
 }
 
 function init() {
-    if (ok == 0) {
+    if (ok === 0) {
         container = document.createElement('div');
         document.body.appendChild( container );
         console.log("bg");
@@ -57,11 +83,9 @@ function init() {
         fieldOfView = 75;
         nearPlane = 1;
         farPlane = 1000;
-        mouseX = 0;
-        mouseY = 0;
 
-        windowHalfX = WIDTH / 2;
-        windowHalfY = HEIGHT / 2;
+        //windowHalfX = WIDTH / 2;
+        //windowHalfY = HEIGHT / 2;
 
         camera = new THREE.PerspectiveCamera(fieldOfView, aspectRatio, nearPlane, farPlane);
 
@@ -72,7 +96,11 @@ function init() {
         scene = new THREE.Scene({antialias:true});
         scene.fog = new THREE.FogExp2( 0x000000, 0.0003 );
 
-        scene.background = new THREE.TextureLoader().load( galaxy );
+        let loader = new THREE.TextureLoader()
+        let bg = loader.load( galaxy );
+        bg.minFilter = THREE.LinearFilter;
+        bg.colorSpace = THREE.SRGBColorSpace;
+        scene.background = bg;
 
         // The wizard's about to get busy.
         starForge();
@@ -102,8 +130,10 @@ function init() {
 
 function animate() {
     javapokevideo.play();
+    mariovideo.play();
+    pokecrossvideo.play();
     javapoketexture.needsUpdate = true;
-    if (clicken == '') {
+    if (clicken === '') {
         controls.update();
     }
     renderer.render(scene, camera);
