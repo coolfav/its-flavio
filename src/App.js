@@ -8,6 +8,9 @@ function App() {
         <p className='Flav'>
           hey, it's flavio.
         </p>
+        <p className='construction'>
+          !website still under construction!
+        </p>
       </div>
       <Buttons/>
     </div>
