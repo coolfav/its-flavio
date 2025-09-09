@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/static/css/main.e450fcf0.css",
-    "main.js": "/static/js/main.79bef398.js",
+    "main.css": "/static/css/main.a9045877.css",
+    "main.js": "/static/js/main.869376dc.js",
     "static/js/453.45b9b06a.chunk.js": "/static/js/453.45b9b06a.chunk.js",
-    "static/media/galaxbgS.jpg": "/static/media/galaxbgS.9eea8ef7ea69b8b5349e.jpg",
+    "static/media/FlavResume_website.pdf": "/static/media/FlavResume_website.9e2bdbae3c5a96c6818e.pdf",
     "index.html": "/index.html",
-    "main.e450fcf0.css.map": "/static/css/main.e450fcf0.css.map",
-    "main.79bef398.js.map": "/static/js/main.79bef398.js.map",
+    "main.a9045877.css.map": "/static/css/main.a9045877.css.map",
+    "main.869376dc.js.map": "/static/js/main.869376dc.js.map",
     "453.45b9b06a.chunk.js.map": "/static/js/453.45b9b06a.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.e450fcf0.css",
-    "static/js/main.79bef398.js"
+    "static/css/main.a9045877.css",
+    "static/js/main.869376dc.js"
   ]
 }
