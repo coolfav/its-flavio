@@ -13,7 +13,7 @@ root.render(
   <BrowserRouter>
     <React.StrictMode>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="its-flavio" element={<Home />} />
         <Route path="experience" element={<Experience />} />
         <Route path="projects" element={<Projects />} />
         <Route path="resume" element={<Resume />} />
