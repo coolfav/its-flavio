@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/its-flavio/static/css/main.a9045877.css",
-    "main.js": "/its-flavio/static/js/main.a05a0c61.js",
+    "main.js": "/its-flavio/static/js/main.b06d20df.js",
     "static/js/453.45b9b06a.chunk.js": "/its-flavio/static/js/453.45b9b06a.chunk.js",
     "static/media/FlavResume_website.pdf": "/its-flavio/static/media/FlavResume_website.9e2bdbae3c5a96c6818e.pdf",
     "index.html": "/its-flavio/index.html",
     "main.a9045877.css.map": "/its-flavio/static/css/main.a9045877.css.map",
-    "main.a05a0c61.js.map": "/its-flavio/static/js/main.a05a0c61.js.map",
+    "main.b06d20df.js.map": "/its-flavio/static/js/main.b06d20df.js.map",
     "453.45b9b06a.chunk.js.map": "/its-flavio/static/js/453.45b9b06a.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.a9045877.css",
-    "static/js/main.a05a0c61.js"
+    "static/js/main.b06d20df.js"
   ]
 }
