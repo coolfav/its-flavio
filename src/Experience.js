@@ -11,7 +11,7 @@ function Experience() {
         <NavLink className="resume" to="/resume">resume_</NavLink>
       </div>
       <div className="coming-soon">
-        <p>coming soon...</p>
+        <p>coming soon_</p>
       </div>
     </div>
   );

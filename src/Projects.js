@@ -26,6 +26,7 @@ function Projects() {
         <p>This website</p>
         <p style={{'font-size': '80%', 'padding-left':'2%'}}>_Made completely from scratch using React and Github hosting</p>
         <p style={{'font-size': '80%', 'padding-left':'2%'}}>_No generative AI was used in the creation of this website</p>
+        <p style={{'font-size': '80%', 'padding-left':'2%'}}>_Still a WIP</p>
       </div>
       <div style={{'margin-top': '6%', 'font-family': 'Consolas', 'font-size': '150%'}}>
         <a href='https://github.com/coolfav' target='_blank' rel="noreferrer"  style={{'margin-top': '80%', 'padding-left': '92%', 'text-decoration': 'none', 'color': 'rgb(0, 182, 182)'}}>github</a>
