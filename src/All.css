@@ -145,6 +145,13 @@
   padding-left: 3%;
 }
 
+.resume {
+  display: flex;
+  justify-content: center;
+  padding-top: 3%;
+  height: 60%;
+}
+
 
 .App-link {
   color: #61dafb;

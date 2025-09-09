@@ -1,5 +1,6 @@
 import './All.css';
 import { NavLink } from 'react-router';
+import resumepdf from './imgs/FlavResume_website.pdf';
 
 function Resume() {
   return (
@@ -10,8 +11,12 @@ function Resume() {
         <NavLink className="projects" to="/projects">projects_</NavLink>
         <NavLink className="resume" to="/resume">resume_</NavLink>
       </div>
-      <div className="blurb">
-        <p>it's me</p>
+      <div className="resume">
+        <object class="pdf" 
+            data={resumepdf}
+            width="60%"
+            height="1000">
+        </object>
       </div>
     </div>
   );
