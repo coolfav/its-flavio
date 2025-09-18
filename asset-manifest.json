@@ -1,16 +1,17 @@
 {
   "files": {
     "main.css": "/static/css/main.a9045877.css",
-    "main.js": "/static/js/main.d9ddee43.js",
+    "main.js": "/static/js/main.215888da.js",
     "static/js/453.45b9b06a.chunk.js": "/static/js/453.45b9b06a.chunk.js",
     "static/media/FlavResume_website.pdf": "/static/media/FlavResume_website.9e2bdbae3c5a96c6818e.pdf",
     "index.html": "/index.html",
+    "static/media/discord.svg": "/static/media/discord.f79aa0ba9115d629ef004009d0a8f2b8.svg",
     "main.a9045877.css.map": "/static/css/main.a9045877.css.map",
-    "main.d9ddee43.js.map": "/static/js/main.d9ddee43.js.map",
+    "main.215888da.js.map": "/static/js/main.215888da.js.map",
     "453.45b9b06a.chunk.js.map": "/static/js/453.45b9b06a.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.a9045877.css",
-    "static/js/main.d9ddee43.js"
+    "static/js/main.215888da.js"
   ]
 }
